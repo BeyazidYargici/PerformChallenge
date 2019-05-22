@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <Spinner android:id="@+id/ac_main_expandable_list_view"
+             app:layout_constraintEnd_toStartOf="@id/iv_spinner"
+             app:layout_constraintTop_toTopOf="parent"
+             android:background="#00000000"
+             tools:listitem="@layout/row_toolbar_header"
+             app:layout_constraintStart_toStartOf="parent"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"/>
+    <ImageView
+            android:layout_alignParentEnd="true"
+            android:id="@+id/iv_spinner"
+            android:src="@android:drawable/arrow_down_float"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="fitXY"
+            android:layout_width="?attr/actionBarSize" android:layout_height="?attr/actionBarSize"/>
+</RelativeLayout>
