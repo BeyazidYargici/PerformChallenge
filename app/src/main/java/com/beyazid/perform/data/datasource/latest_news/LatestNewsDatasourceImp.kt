@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.beyazid.perform.ApiService
 import com.beyazid.perform.model.latests_news.LatestNewsItem
 import com.beyazid.perform.model.latests_news.LatestNewsResponse
+import com.beyazid.perform.model.standings.StandingsResponse
 import com.google.gson.Gson
 import retrofit2.Response
 import timber.log.Timber
@@ -16,8 +17,6 @@ import javax.inject.Inject
  */
 class LatestNewsDatasourceImp @Inject constructor(private val apiService: ApiService,private val gson: Gson) : LatestNewsDatasource {
 
-//    @Inject
-//    lateinit var gson : Gson
     var mFetchedLatestNews = MutableLiveData<List<LatestNewsItem>>()
 
     override val fetchedLatestNews: LiveData<List<LatestNewsItem>>

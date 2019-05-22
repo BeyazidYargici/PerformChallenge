@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.beyazid.perform.data.repository.scores.ScoresRepository
 import com.beyazid.perform.model.scores.ScoresResponse
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 class ScoresViewModel @Inject constructor(private val scoresRepository: ScoresRepository) : ViewModel() {
@@ -15,7 +14,7 @@ class ScoresViewModel @Inject constructor(private val scoresRepository: ScoresRe
     var scoresResponse: LiveData<ScoresResponse>? = null
 
     fun getScores() = viewModelScope.launch {
-        scoresResponse = scoresRepository.getDummy()
+        scoresResponse = scoresRepository.getScores()
     }
 
 }

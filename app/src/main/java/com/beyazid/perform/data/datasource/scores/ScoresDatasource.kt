@@ -8,6 +8,6 @@ import retrofit2.Response
  *  Created by beyazid on 2019-05-12.
  */
 interface ScoresDatasource {
-    val fetchedDummy: LiveData<ScoresResponse>
-    suspend fun getDummy() : LiveData<ScoresResponse>
+    val fetchedScores: LiveData<ScoresResponse>
+    suspend fun getScores() : LiveData<ScoresResponse>
 }

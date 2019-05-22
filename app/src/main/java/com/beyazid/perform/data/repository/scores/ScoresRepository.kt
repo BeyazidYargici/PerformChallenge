@@ -8,5 +8,5 @@ import retrofit2.Response
  *  Created by beyazid on 2019-05-12.
  */
 interface ScoresRepository {
-    suspend fun getDummy() : LiveData<ScoresResponse>
+    suspend fun getScores() : LiveData<ScoresResponse>
 }

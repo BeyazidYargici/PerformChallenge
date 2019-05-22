@@ -3,10 +3,8 @@ package com.beyazid.perform.data.repository.latest_news
 import androidx.lifecycle.LiveData
 import com.beyazid.perform.data.datasource.latest_news.LatestNewsDatasource
 import com.beyazid.perform.model.latests_news.LatestNewsItem
-import com.beyazid.perform.model.latests_news.LatestNewsResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 import javax.inject.Inject
 
 /**

@@ -5,7 +5,6 @@ import com.beyazid.perform.data.datasource.scores.ScoresDatasource
 import com.beyazid.perform.model.scores.ScoresResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 import javax.inject.Inject
 
 /**
@@ -13,9 +12,9 @@ import javax.inject.Inject
  */
 class ScoresRepositoryImp @Inject constructor(private val scoresDatasource: ScoresDatasource) :
     ScoresRepository {
-    override suspend fun getDummy(): LiveData<ScoresResponse> {
+    override suspend fun getScores(): LiveData<ScoresResponse> {
         return withContext(Dispatchers.IO) {
-            scoresDatasource.getDummy()
+            scoresDatasource.getScores()
         }
     }
 }
