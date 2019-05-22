@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.beyazid.perform.ApiService
 import com.beyazid.perform.model.latests_news.LatestNewsItem
 import com.beyazid.perform.model.latests_news.LatestNewsResponse
+import com.beyazid.perform.model.standings.Competition
 import com.beyazid.perform.model.standings.StandingsResponse
 import com.google.gson.Gson
 import timber.log.Timber
@@ -15,18 +16,18 @@ import javax.inject.Inject
 /**
  *  Created by beyazid on 2019-05-22.
  */
-class StandingDatasourceImp @Inject constructor(val apiService: ApiService, val gson: Gson) : StandingsDatasource {
+class StandingsDatasourceImp @Inject constructor(val apiService: ApiService, val gson: Gson) : StandingsDatasource {
 
-    var mFetchedStandings = MutableLiveData<Objects>()
+    var mFetchedStandings = MutableLiveData<Competition>()
 
-    override val fetchedStandings: LiveData<Objects>
+    override val fetchedStandings: LiveData<Competition>
         get() = mFetchedStandings
 
-    override suspend fun getStandings(): LiveData<Objects> {
+    override suspend fun getStandings(): LiveData<Competition> {
         return try {
             val xmlResponse1 = apiService.getStandingsAsStringAsync().await()
             val standings = xmlToJson(gson, xmlResponse1.body()!!, StandingsResponse::class.java)
-//            mFetchedStandings.postValue(Objects)
+            mFetchedStandings.postValue(standings.gsmrs?.competition)
             fetchedStandings
         } catch (e: Exception) {
             Timber.e(e.localizedMessage)

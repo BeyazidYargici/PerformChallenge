@@ -3,15 +3,15 @@
     <color name="colorPrimary">#F01B1A1A</color>
     <color name="colorPrimaryDark">#F046628D</color>
     <color name="colorAccent">#EED3D3D3</color>
-    <!--<color name="gradient_start">#293544</color>-->
-    <!--<color name="gradient_center">#C82E3A49</color>-->
-    <!--<color name="gradient_end">#F01B1A1A</color>-->
     <color name="gradient_start">#193458</color>
     <color name="gradient_center">#C8375E8F</color>
     <color name="gradient_end">#F046628D</color>
-    <color name="positive_percentage">#34C43C</color>
-    <color name="negative_percentage">#C21D1D</color>
+    <color name="cl">#34C43C</color>
+    <color name="cl_qf">#A5F094</color>
+    <color name="ec">#8EEBEB</color>
+    <color name="releg">#C21D1D</color>
     <color name="icon_bg">#F7F1F1F1</color>
     <color name="white_alpha_text">#EED3D3D3</color>
     <color name="black_alpha_text">#CE000000</color>
+
 </resources>

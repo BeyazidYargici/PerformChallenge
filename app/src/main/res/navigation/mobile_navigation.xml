@@ -7,5 +7,9 @@
         <action android:id="@+id/action_latestNewsFragment_to_scoresFragment" app:destination="@id/scoresFragment"/>
     </fragment>
     <fragment android:id="@+id/scoresFragment" android:name="com.beyazid.perform.ui.scores.ScoresFragment"
-              android:label="ScoresFragment"/>
+              android:label="ScoresFragment">
+        <action android:id="@+id/action_scoresFragment_to_standingsFragment" app:destination="@id/standingsFragment"/>
+    </fragment>
+    <fragment android:id="@+id/standingsFragment" android:name="com.beyazid.perform.ui.standing.StandingsFragment"
+              android:label="StandingsFragment"/>
 </navigation>

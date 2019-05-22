@@ -49,15 +49,9 @@ class MainActivity : BaseActivity() {
         spinnerToolbar!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 when(position){
-                    0 ->{
-                        openFragment(this@MainActivity,R.id.latestNewsFragment,null)
-                    }
-                    1 ->{
-                        openFragment(this@MainActivity,R.id.scoresFragment,null)
-                    }
-                    2 ->{
-
-                    }
+                    0 -> openFragment(this@MainActivity,R.id.latestNewsFragment,null)
+                    1 -> openFragment(this@MainActivity,R.id.scoresFragment,null)
+                    2 -> openFragment(this@MainActivity,R.id.standingsFragment,null)
                 }
             }
 

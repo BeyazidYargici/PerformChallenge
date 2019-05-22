@@ -44,7 +44,6 @@ class LatestNewsFragment : BaseFragment() {
     private fun getData() {
         viewModel.getLatestNews().invokeOnCompletion {
             viewModel.latestNewsResponse?.observe(this@LatestNewsFragment, Observer {
-                Timber.e("LatestNews$it")
                 initAdapter(it)
             })
         }

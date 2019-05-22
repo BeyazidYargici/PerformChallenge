@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.beyazid.perform.di.ViewModelKey
 import com.beyazid.perform.ui.latest_news.LatestNewsViewModel
 import com.beyazid.perform.ui.scores.ScoresViewModel
+import com.beyazid.perform.ui.standing.StandingsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -26,5 +27,10 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ScoresViewModel::class)
     protected abstract fun bindScoresViewModel(scoresViewModel: ScoresViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StandingsViewModel::class)
+    protected abstract fun bindStandingsViewModel(standingsViewModel: StandingsViewModel): ViewModel
 
 }

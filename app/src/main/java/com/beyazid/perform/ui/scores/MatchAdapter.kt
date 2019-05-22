@@ -5,12 +5,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.beyazid.perform.R
-import com.beyazid.perform.model.scores.GroupItem
 import com.beyazid.perform.model.scores.MatchItem
 import kotlinx.android.synthetic.main.row_scores.view.*
 
@@ -45,14 +42,14 @@ class MatchAdapter(val context: Context, val matches: List<MatchItem>) :
             if (pos%2==0) evenItem() else oddItem()
         }
         private fun oddItem() {
-            container.background = ContextCompat.getDrawable(context,R.drawable.row_score_teams_background)
+            container.background = ContextCompat.getDrawable(context,R.drawable.row_odd_background)
             tvHome.setTextColor(ContextCompat.getColor(context,R.color.black_alpha_text))
             tvAway.setTextColor(ContextCompat.getColor(context,R.color.black_alpha_text))
             tvScore.setTextColor(ContextCompat.getColor(context,R.color.white_alpha_text))
         }
 
         private fun evenItem() {
-            container.background = ContextCompat.getDrawable(context,R.drawable.row_score_teams_reverse_background)
+            container.background = ContextCompat.getDrawable(context,R.drawable.row_even_background)
             tvHome.setTextColor(ContextCompat.getColor(context,R.color.white_alpha_text))
             tvAway.setTextColor(ContextCompat.getColor(context,R.color.white_alpha_text))
             tvScore.setTextColor(ContextCompat.getColor(context,R.color.black_alpha_text))

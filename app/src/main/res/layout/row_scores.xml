@@ -3,7 +3,7 @@
         android:id="@+id/fr_scores_ll_container"
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
         android:orientation="horizontal"
-        android:background="@drawable/row_score_teams_background"
+        android:background="@drawable/row_odd_background"
         android:layout_width="match_parent"
         android:layout_height="40dp">
 

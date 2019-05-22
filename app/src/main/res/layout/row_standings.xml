@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/row_standings_ll_container"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="32dp">
+
+    <TextView android:id="@+id/row_standings_tv_rank"       android:fontFamily="@font/gordita_bold" android:gravity="center" android:textSize="15sp" android:textColor="@color/white_alpha_text" android:text="#"     android:layout_weight="1" android:layout_width="0dp" android:layout_height="match_parent"/>
+    <TextView android:id="@+id/row_standings_tv_club_name"  android:fontFamily="@font/gordita_bold" android:gravity="start|center_vertical"  android:paddingStart="8dp" android:textSize="15sp" android:textColor="@color/white_alpha_text" android:text="Clubs" android:layout_weight="5" android:layout_width="0dp" android:layout_height="match_parent"
+                android:maxLines="1"
+              android:autoSizeTextType="uniform"
+              android:autoSizeMinTextSize="13sp"
+              android:autoSizeMaxTextSize="16sp"
+              android:autoSizeStepGranularity="2sp"/>
+    <TextView android:id="@+id/row_standings_tv_total_game" android:fontFamily="@font/gordita_bold" android:gravity="center" android:textSize="15sp" android:textColor="@color/white_alpha_text" android:text="P" android:layout_weight="1" android:layout_width="0dp" android:layout_height="match_parent"/>
+    <TextView android:id="@+id/row_standings_tv_win"        android:fontFamily="@font/gordita_bold" android:gravity="center" android:textSize="15sp" android:textColor="@color/white_alpha_text" android:text="W"     android:layout_weight="1" android:layout_width="0dp" android:layout_height="match_parent"/>
+    <TextView android:id="@+id/row_standings_tv_draw"       android:fontFamily="@font/gordita_bold" android:gravity="center" android:textSize="15sp" android:textColor="@color/white_alpha_text" android:text="D"     android:layout_weight="1" android:layout_width="0dp" android:layout_height="match_parent"/>
+    <TextView android:id="@+id/row_standings_tv_lose"       android:fontFamily="@font/gordita_bold" android:gravity="center" android:textSize="15sp" android:textColor="@color/white_alpha_text" android:text="L"     android:layout_weight="1" android:layout_width="0dp" android:layout_height="match_parent"/>
+    <TextView android:id="@+id/row_standings_tv_average"    android:fontFamily="@font/gordita_bold" android:gravity="center" android:textSize="15sp" android:textColor="@color/white_alpha_text" android:text="+/-"    android:layout_weight="1" android:layout_width="0dp" android:layout_height="match_parent"/>
+    <TextView android:id="@+id/row_standings_tv_points"     android:fontFamily="@font/gordita_bold" android:gravity="center" android:textSize="15sp" android:textColor="@color/white_alpha_text" android:text="Pts"   android:layout_weight="1" android:layout_width="0dp" android:layout_height="match_parent"/>
+
+</LinearLayout>
