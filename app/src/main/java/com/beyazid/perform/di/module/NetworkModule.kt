@@ -86,7 +86,7 @@ class NetworkModule {
             .cache(cache)
             .addInterceptor(logging)
             .addInterceptor(interceptor)
-            .addInterceptor(StethoInterceptor())
+            .addNetworkInterceptor(StethoInterceptor())
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
         return httpClient.build()
