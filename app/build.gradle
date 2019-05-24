@@ -104,7 +104,7 @@ dependencies {
     // Paging Library
     implementation "androidx.paging:paging-runtime:2.1.0"
     implementation 'androidx.paging:paging-runtime-ktx:2.1.0'
-//    implementation 'com.crowdfire.cfalertdialog:cfalertdialog:1.1.0'
+    implementation 'com.crowdfire.cfalertdialog:cfalertdialog:1.1.0'
 
     // Paper for storage primitive data
     implementation 'io.paperdb:paperdb:2.6'

@@ -1,34 +1,23 @@
 package com.beyazid.perform.base
 
-import android.annotation.SuppressLint
-import com.beyazid.perform.utils.Result
+import androidx.lifecycle.MutableLiveData
+import com.beyazid.perform.network.ErrorHandler
+import com.beyazid.perform.network.Status
 import retrofit2.Response
-import timber.log.Timber
-import java.io.IOException
-import java.lang.Exception
 
 /**
  *  Created by beyazid on 2019-05-23.
  */
 open class BaseRepository {
-    @SuppressLint("TimberArgCount")
-    suspend fun <T : Any> safeApiCall(call: suspend () -> Response<T>, errorMessage: String): T? {
-        val result = safeApiResult(call, errorMessage)
-        var data: T? = null
-        when (result) {
-            is Result.Success ->
-                data = result.data
-            is Result.Error ->
-                Timber.e("$errorMessage & Exception - ${result.exception}")
-        }
-        return data
-    }
 
-    private suspend fun <T : Any> safeApiResult(call: suspend () -> Response<T>, errorMessage: String): Result<T> {
-        val response = call.invoke()
-        return if (response.isSuccessful) Result.Success(response.body()!!)
-        else Result.Error(Exception(errorMessage))
-
+    fun responseStatusChecker(response: Response<String>) : ErrorHandler {
+        return if (response.isSuccessful) if (response.code() == 200) {
+            when {
+                response.body() != null && response.body()!!.contains("rss") -> ErrorHandler(Status.SUCCESS, response.code(), response.body())
+                else -> ErrorHandler(Status.UNKNOWN, response.code(), response.message())
+            }
+        } else ErrorHandler(Status.ERROR, response.code(), "${response.code()} ${response.errorBody().toString()}")
+        else ErrorHandler(Status.FAILURE, response.code(), response.errorBody().toString())
     }
 
 }

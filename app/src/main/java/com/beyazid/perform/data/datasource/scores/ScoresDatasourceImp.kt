@@ -2,17 +2,18 @@ package com.beyazid.perform.data.datasource.scores
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.beyazid.perform.ApiService
+import com.beyazid.perform.network.ApiService
 import com.beyazid.perform.model.scores.ScoresResponse
 import com.google.gson.Gson
 import timber.log.Timber
 import xmlToJson
+import java.util.*
 import javax.inject.Inject
 
 /**
  *  Created by beyazid on 2019-05-12.
  */
-class ScoresDatasourceImp @Inject constructor(private val apiService: ApiService,private val gson: Gson) : ScoresDatasource {
+class ScoresDatasourceImp @Inject constructor(private val apiService: ApiService, private val gson: Gson) : ScoresDatasource {
 
     var mFetchedScores = MutableLiveData<ScoresResponse>()
 
@@ -30,4 +31,17 @@ class ScoresDatasourceImp @Inject constructor(private val apiService: ApiService
             fetchedScores
         }
     }
+
+//    lateinit var timer : Timer
+
+//    private fun startTimer() {
+//        timer = Timer()
+//        timer.scheduleAtFixedRate(TimerTask {
+//            public void run() {
+//                new AsyncDataClass2  adc = new AsyncDataClass2("u","p");
+//                adc.execute();
+//            }
+//        }, 0, 1000);
+//    }
+
 }

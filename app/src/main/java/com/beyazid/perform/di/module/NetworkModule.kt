@@ -1,6 +1,6 @@
 package com.beyazid.perform.di.module
 
-import com.beyazid.perform.ApiService
+import com.beyazid.perform.network.ApiService
 import com.beyazid.perform.PerformApp
 import com.beyazid.perform.utils.BASE_URL
 import com.facebook.stetho.Stetho

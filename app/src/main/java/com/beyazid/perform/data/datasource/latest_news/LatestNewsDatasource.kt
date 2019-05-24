@@ -1,9 +1,9 @@
 package com.beyazid.perform.data.datasource.latest_news
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.beyazid.perform.network.ErrorHandler
 import com.beyazid.perform.model.latests_news.LatestNewsItem
-import com.beyazid.perform.model.latests_news.LatestNewsResponse
-import retrofit2.Response
 
 /**
  *  Created by beyazid on 2019-05-12.
@@ -11,4 +11,5 @@ import retrofit2.Response
 interface LatestNewsDatasource {
     val fetchedLatestNews: LiveData<List<LatestNewsItem>>
     suspend fun getLatestNews() : LiveData<List<LatestNewsItem>>
+    var status: MutableLiveData<ErrorHandler>
 }

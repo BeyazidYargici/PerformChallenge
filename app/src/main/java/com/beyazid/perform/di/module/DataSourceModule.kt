@@ -1,6 +1,6 @@
 package com.beyazid.perform.di.module
 
-import com.beyazid.perform.ApiService
+import com.beyazid.perform.network.ApiService
 import com.beyazid.perform.data.datasource.latest_news.LatestNewsDatasource
 import com.beyazid.perform.data.datasource.latest_news.LatestNewsDatasourceImp
 import com.beyazid.perform.data.datasource.scores.ScoresDatasource
@@ -19,12 +19,12 @@ class DataSourceModule {
         return LatestNewsDatasourceImp(apiService,gson)
     }
     @Provides
-    internal fun provideScoresDatasource(apiService: ApiService,gson: Gson): ScoresDatasource {
+    internal fun provideScoresDatasource(apiService: ApiService, gson: Gson): ScoresDatasource {
         return ScoresDatasourceImp(apiService,gson)
     }
 
     @Provides
-    internal fun provideStandingsDatasource(apiService: ApiService,gson: Gson): StandingsDatasource {
+    internal fun provideStandingsDatasource(apiService: ApiService, gson: Gson): StandingsDatasource {
         return StandingsDatasourceImp(apiService,gson)
     }
 

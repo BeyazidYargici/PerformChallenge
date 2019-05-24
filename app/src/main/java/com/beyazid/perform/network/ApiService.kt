@@ -1,4 +1,4 @@
-package com.beyazid.perform
+package com.beyazid.perform.network
 
 import kotlinx.coroutines.Deferred
 import retrofit2.Response

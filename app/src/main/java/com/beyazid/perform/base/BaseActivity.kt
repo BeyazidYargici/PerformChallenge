@@ -5,6 +5,9 @@ import android.widget.ProgressBar
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
+import com.beyazid.perform.R
+import com.beyazid.perform.utils.InternetConnectionAvailability
+import com.beyazid.perform.utils.createDialog
 import dagger.android.AndroidInjection
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.coroutines.CoroutineScope
@@ -35,7 +38,7 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, L
         job = Job()
         progressBar = ProgressBar(this)
         mLifecycleRegistry = LifecycleRegistry(this)
-//        networkControl()
+        networkControl()
     }
 
     override fun onDestroy() {
@@ -52,16 +55,13 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, L
         }
     }
 
-//    fun networkControl(){
-//        val connectionLiveData = InternetConnectionAvailability(this)
-//        connectionLiveData.observe(this, Observer { isConnected ->
-//            isConnected?.let {
-//                if (!it) {
-//                    createDialog(this, getString(R.string.no_connection), "")
-//                }
-//                Timber.e("network connection ".plus(it.toString()))
-//                isNetworkAvailable = it
-//            }
-//        })
-//    }
+    private fun networkControl(){
+        val connectionLiveData = InternetConnectionAvailability(this)
+        connectionLiveData.observe(this, Observer { isConnected ->
+            isConnected?.let {
+                if (!it) createDialog(this, getString(R.string.no_connection), "")
+                isNetworkAvailable = it
+            }
+        })
+    }
 }

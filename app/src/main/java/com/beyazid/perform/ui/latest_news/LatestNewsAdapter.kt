@@ -2,6 +2,7 @@ package com.beyazid.perform.ui.latest_news
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.beyazid.perform.R
 import com.beyazid.perform.model.latests_news.LatestNewsItem
 import com.beyazid.perform.utils.GlideApp
 import kotlinx.android.synthetic.main.row_latest_news.view.*
+import openFragment
 
 /**
  *  Created by beyazid on 2019-05-21.
@@ -37,6 +39,12 @@ class LatestNewsAdapter(val context: Context,val newsList : List<LatestNewsItem>
             tvTitle.text = news.title
             tvDate.text = news.pubDate
             GlideApp.with(ivImage.context).load(news.enclosure?.url).into(ivImage)
+
+            itemView.setOnClickListener {
+                val b = Bundle()
+                b.putString("news_detail_url",news.link)
+                openFragment(context,R.id.newsDetailFragment,b)
+            }
         }
     }
 }

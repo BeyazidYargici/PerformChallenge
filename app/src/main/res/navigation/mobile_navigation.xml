@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/mobile_navigation"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mobile_navigation"
             app:startDestination="@id/latestNewsFragment">
     <fragment android:id="@+id/latestNewsFragment" android:name="com.beyazid.perform.ui.latest_news.LatestNewsFragment"
               android:label="LatestNewsFragment">
-        <action android:id="@+id/action_latestNewsFragment_to_scoresFragment" app:destination="@id/scoresFragment"/>
+        <action android:id="@+id/action_latestNewsFragment_to_newsDetailFragment"
+                app:destination="@id/newsDetailFragment"/>
     </fragment>
     <fragment android:id="@+id/scoresFragment" android:name="com.beyazid.perform.ui.scores.ScoresFragment"
-              android:label="ScoresFragment">
-        <action android:id="@+id/action_scoresFragment_to_standingsFragment" app:destination="@id/standingsFragment"/>
-    </fragment>
+              android:label="ScoresFragment"/>
     <fragment android:id="@+id/standingsFragment" android:name="com.beyazid.perform.ui.standing.StandingsFragment"
               android:label="StandingsFragment"/>
+    <fragment android:id="@+id/newsDetailFragment" android:name="com.beyazid.perform.ui.news_detail.NewsDetailFragment"
+              android:label="fragment_news_detail" tools:layout="@layout/fragment_news_detail"/>
 </navigation>

@@ -1,18 +1,18 @@
 package com.beyazid.perform.ui.latest_news
 
 import android.os.Bundle
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.beyazid.perform.R
 import com.beyazid.perform.base.BaseFragment
+import com.beyazid.perform.network.Status
 import com.beyazid.perform.model.latests_news.LatestNewsItem
+import com.beyazid.perform.utils.createDialog
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import init
 import kotlinx.android.synthetic.main.latest_news_fragment.*
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -34,18 +34,21 @@ class LatestNewsFragment : BaseFragment() {
         AndroidSupportInjection.inject(this)
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, vmFactory).get(LatestNewsViewModel::class.java)
-        initUI()
-    }
-
-    private fun initUI() {
         getData()
     }
 
+    /**
+     *  fetch latest news from repository -> control the response status -> fill the adapter if status returned as success
+     */
     private fun getData() {
         viewModel.getLatestNews().invokeOnCompletion {
-            viewModel.latestNewsResponse?.observe(this@LatestNewsFragment, Observer {
-                initAdapter(it)
+            viewModel.status?.observe(this, Observer {
+                when(viewModel.status?.value?.status){
+                    Status.SUCCESS -> viewModel.latestNewsResponse?.observe(this, Observer { list-> initAdapter(list) })
+                    else-> createDialog(activity!!, it.code.toString(), it.message!!)
+                }
             })
+
         }
     }
 

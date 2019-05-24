@@ -2,15 +2,12 @@ package com.beyazid.perform.data.datasource.standings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.beyazid.perform.ApiService
-import com.beyazid.perform.model.latests_news.LatestNewsItem
-import com.beyazid.perform.model.latests_news.LatestNewsResponse
+import com.beyazid.perform.network.ApiService
 import com.beyazid.perform.model.standings.Competition
 import com.beyazid.perform.model.standings.StandingsResponse
 import com.google.gson.Gson
 import timber.log.Timber
 import xmlToJson
-import java.util.*
 import javax.inject.Inject
 
 /**
