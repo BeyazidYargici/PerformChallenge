@@ -1,7 +1,9 @@
 package com.beyazid.perform.data.datasource.scores
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.beyazid.perform.model.scores.ScoresResponse
+import com.beyazid.perform.network.ErrorHandler
 import retrofit2.Response
 
 /**
@@ -10,4 +12,5 @@ import retrofit2.Response
 interface ScoresDatasource {
     val fetchedScores: LiveData<ScoresResponse>
     suspend fun getScores() : LiveData<ScoresResponse>
+    var status: MutableLiveData<ErrorHandler>
 }

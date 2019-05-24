@@ -7,13 +7,19 @@ import com.beyazid.perform.R
 import com.beyazid.perform.base.BaseFragment
 import com.beyazid.perform.model.scores.Competition
 import com.beyazid.perform.model.scores.GroupItem
+import com.beyazid.perform.network.Status
+import com.beyazid.perform.utils.createDialog
+import gone
 import init
-import kotlinx.android.synthetic.main.scores_fragment.*
+import kotlinx.android.synthetic.main.fragment_latest_news.*
+import kotlinx.android.synthetic.main.fragment_scores.*
+import kotlinx.coroutines.runBlocking
+import java.util.*
 import javax.inject.Inject
 
 class ScoresFragment : BaseFragment() {
 
-    override fun getLayout(): Int = R.layout.scores_fragment
+    override fun getLayout(): Int = R.layout.fragment_scores
 
     @Inject
     lateinit var vmFactory: ScoresVMFactory
@@ -26,14 +32,21 @@ class ScoresFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, vmFactory).get(ScoresViewModel::class.java)
+        progressBall = fr_scores_pb
         getData()
+        startTimer()
     }
 
     private fun getData() {
         viewModel.getScores().invokeOnCompletion {
-            viewModel.scoresResponse?.observe(this@ScoresFragment, Observer {
-                if (it == null) return@Observer
-                it.gsmrs?.competition?.let { competition -> initUI(competition) }
+            viewModel.status?.observe(this, Observer {
+                when (viewModel.status?.value?.status) {
+                    Status.SUCCESS -> viewModel.scoresResponse?.observe(this, Observer { scores -> if (scores == null) return@Observer
+                        scores.gsmrs?.competition?.let { competition -> initUI(competition) }
+                    })
+                    else -> createDialog(activity!!, it.code.toString(), it.message!!)
+                }
+                progressBall.gone()
             })
         }
     }
@@ -49,5 +62,21 @@ class ScoresFragment : BaseFragment() {
         recyclerView = fr_scores_rv
         groupAdapter = GroupAdapter(activity!!, groups)
         recyclerView.init(groupAdapter)
+    }
+
+    lateinit var timer: Timer
+    //
+    private fun startTimer() {
+        timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                runBlocking { getData() }
+            }
+        }, 0, 15000)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timer.cancel()
     }
 }

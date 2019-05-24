@@ -8,8 +8,12 @@ import com.beyazid.perform.R
 import com.beyazid.perform.base.BaseFragment
 import com.beyazid.perform.model.standings.Competition
 import com.beyazid.perform.model.standings.RankingItem
+import com.beyazid.perform.network.Status
+import com.beyazid.perform.utils.createDialog
+import gone
 import init
-import kotlinx.android.synthetic.main.standings_fragment.*
+import kotlinx.android.synthetic.main.fragment_latest_news.*
+import kotlinx.android.synthetic.main.fragment_standings.*
 import kotlinx.coroutines.launch
 import slideToLeftGroupName
 import slideToRightGroupName
@@ -19,7 +23,7 @@ import javax.inject.Inject
  *  Created by beyazid on 2019-05-22.
  */
 class StandingsFragment : BaseFragment() {
-    override fun getLayout(): Int = R.layout.standings_fragment
+    override fun getLayout(): Int = R.layout.fragment_standings
 
     @Inject
     lateinit var vmFactory: StandingsVMFactory
@@ -32,14 +36,23 @@ class StandingsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, vmFactory).get(StandingsViewModel::class.java)
+        progressBall = fr_standings_pb
         getData()
     }
 
     private fun getData() = launch {
         viewModel.getStandings().invokeOnCompletion {
-            viewModel.standingsResponse?.observe(this@StandingsFragment, Observer {
-                if (it == null) return@Observer
-                initUI(it)
+            viewModel.status?.observe(this@StandingsFragment, Observer {
+                when (viewModel.status?.value?.status) {
+                    Status.SUCCESS -> viewModel.standingsResponse?.observe(
+                        this@StandingsFragment,
+                        Observer { competition ->
+                            if (competition == null) return@Observer
+                            initUI(competition)
+                        })
+                    else -> createDialog(activity!!, it.code.toString(), it.message!!)
+                }
+                progressBall.gone()
             })
         }
     }

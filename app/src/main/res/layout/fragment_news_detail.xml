@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <WebView
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/fr_news_detail_wv"
+            tools:context=".ui.news_detail.NewsDetailFragment" android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+    </WebView>
+</RelativeLayout>

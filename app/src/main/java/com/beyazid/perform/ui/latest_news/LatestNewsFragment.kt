@@ -11,8 +11,9 @@ import com.beyazid.perform.model.latests_news.LatestNewsItem
 import com.beyazid.perform.utils.createDialog
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjection
+import gone
 import init
-import kotlinx.android.synthetic.main.latest_news_fragment.*
+import kotlinx.android.synthetic.main.fragment_latest_news.*
 import javax.inject.Inject
 
 
@@ -20,7 +21,7 @@ class LatestNewsFragment : BaseFragment() {
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
 
-    override fun getLayout(): Int = R.layout.latest_news_fragment
+    override fun getLayout(): Int = R.layout.fragment_latest_news
 
     @Inject
     lateinit var vmFactory: LatestNewsVMFactory
@@ -34,6 +35,7 @@ class LatestNewsFragment : BaseFragment() {
         AndroidSupportInjection.inject(this)
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, vmFactory).get(LatestNewsViewModel::class.java)
+        progressBall = fr_latest_news_pb
         getData()
     }
 
@@ -47,6 +49,7 @@ class LatestNewsFragment : BaseFragment() {
                     Status.SUCCESS -> viewModel.latestNewsResponse?.observe(this, Observer { list-> initAdapter(list) })
                     else-> createDialog(activity!!, it.code.toString(), it.message!!)
                 }
+                progressBall.gone()
             })
 
         }

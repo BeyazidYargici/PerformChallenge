@@ -3,6 +3,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
@@ -58,6 +59,9 @@ fun TextView.rankColor(@Nullable zone: String) {
         "releg" -> this.setBackgroundColor(ContextCompat.getColor(context, R.color.releg))
     }
 }
+
+fun ImageView.launcherAnim() = this.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim_icon))
+
 fun View.visible() = run { this.visibility = View.VISIBLE }
 
 fun View.gone() = run { this.visibility = View.GONE }

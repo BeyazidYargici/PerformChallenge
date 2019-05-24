@@ -2,6 +2,7 @@ package com.beyazid.perform.data.repository.scores
 
 import androidx.lifecycle.LiveData
 import com.beyazid.perform.model.scores.ScoresResponse
+import com.beyazid.perform.network.ErrorHandler
 import retrofit2.Response
 
 /**
@@ -9,4 +10,5 @@ import retrofit2.Response
  */
 interface ScoresRepository {
     suspend fun getScores() : LiveData<ScoresResponse>
+    var status: LiveData<ErrorHandler>
 }

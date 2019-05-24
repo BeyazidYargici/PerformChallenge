@@ -13,7 +13,7 @@ open class BaseRepository {
     fun responseStatusChecker(response: Response<String>) : ErrorHandler {
         return if (response.isSuccessful) if (response.code() == 200) {
             when {
-                response.body() != null && response.body()!!.contains("rss") -> ErrorHandler(Status.SUCCESS, response.code(), response.body())
+                response.body() != null && response.body()!!.contains("<?xml") -> ErrorHandler(Status.SUCCESS, response.code(), response.body())
                 else -> ErrorHandler(Status.UNKNOWN, response.code(), response.message())
             }
         } else ErrorHandler(Status.ERROR, response.code(), "${response.code()} ${response.errorBody().toString()}")

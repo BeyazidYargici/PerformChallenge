@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.annotation.LayoutRes
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.Fragment
@@ -34,7 +35,7 @@ abstract class BaseFragment : Fragment(), CoroutineScope, HasSupportFragmentInje
     private lateinit var job: Job
 
     // progressbar will be showing while fetching data from network
-    private var progressBar: ContentLoadingProgressBar? = null
+    lateinit var progressBall : ProgressBar
     // RecyclerView will be listing response items
     lateinit var recyclerView: RecyclerView
 

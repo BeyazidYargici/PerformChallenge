@@ -8,5 +8,6 @@ enum class Status {
     ERROR,
     FAILURE,
     UNKNOWN,
-    LOADING
+    LOADING,
+    TIME_OUT
 }

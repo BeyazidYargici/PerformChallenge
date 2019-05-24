@@ -11,6 +11,7 @@ import dagger.android.DispatchingAndroidInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 import android.widget.AdapterView
+import android.widget.ProgressBar
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.beyazid.perform.component.CustomSpinnerAdapter
@@ -34,9 +35,6 @@ class MainActivity : BaseActivity() {
     private var headerList = arrayOf("News", "Scores", "Standings")
     private var spinnerToolbar: Spinner? = null
 
-    @Inject
-    lateinit var gson: Gson
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navController = findNavController(R.id.ac_main_fragment_container)
@@ -48,10 +46,10 @@ class MainActivity : BaseActivity() {
     private fun spinnerListener() {
         spinnerToolbar!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                when(position){
-                    0 -> openFragment(this@MainActivity,R.id.latestNewsFragment,null)
-                    1 -> openFragment(this@MainActivity,R.id.scoresFragment,null)
-                    2 -> openFragment(this@MainActivity,R.id.standingsFragment,null)
+                when (position) {
+                    0 -> openFragment(this@MainActivity, R.id.latestNewsFragment, null)
+                    1 -> openFragment(this@MainActivity, R.id.scoresFragment, null)
+                    2 -> openFragment(this@MainActivity, R.id.standingsFragment, null)
                 }
             }
 

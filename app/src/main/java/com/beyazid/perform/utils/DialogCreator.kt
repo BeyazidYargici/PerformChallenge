@@ -15,7 +15,7 @@ fun createDialog(context: Context, code: String, message: String) {
     val builder = CFAlertDialog.Builder(context)
         .setDialogStyle(CFAlertDialog.CFAlertStyle.NOTIFICATION)
         .setTitle("ERROR")
-        .setMessage("$code $message \n'Restart PerformApp'")
+        .setMessage("response code : $code \n response message : $message \n'Restart PerformApp'")
         .addButton(
             "Close",
             -1,

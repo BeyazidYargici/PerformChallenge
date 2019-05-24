@@ -7,6 +7,7 @@ import com.beyazid.perform.base.BaseRepository
 import com.beyazid.perform.network.ErrorHandler
 import com.beyazid.perform.model.latests_news.LatestNewsItem
 import com.beyazid.perform.model.latests_news.LatestNewsResponse
+import com.beyazid.perform.network.Status
 import com.google.gson.Gson
 import timber.log.Timber
 import xmlToJson
@@ -29,13 +30,13 @@ class LatestNewsDatasourceImp @Inject constructor(private val apiService: ApiSer
      */
     override suspend fun getLatestNews(): LiveData<List<LatestNewsItem>> {
         return try {
-            val newsResponse = apiService.getLatestNewsAsStringAsync().await()
-            status.postValue(responseStatusChecker(newsResponse))
-            val latestNewsResponse = xmlToJson(gson, newsResponse.body()!!, LatestNewsResponse::class.java)
+            val response = apiService.getLatestNewsAsStringAsync().await()
+            status.postValue(responseStatusChecker(response))
+            val latestNewsResponse = xmlToJson(gson, response.body()!!, LatestNewsResponse::class.java)
             mFetchedLatestNews.postValue(latestNewsResponse.rss?.channel?.item as List<LatestNewsItem>?)
             fetchedLatestNews
         } catch (e: Exception) {
-            Timber.e(e.localizedMessage)
+            status.postValue(ErrorHandler(Status.TIME_OUT, 0, Status.TIME_OUT.name))
             fetchedLatestNews
         }
 
