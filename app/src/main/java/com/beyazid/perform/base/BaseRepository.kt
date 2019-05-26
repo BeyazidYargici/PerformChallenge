@@ -1,8 +1,7 @@
 package com.beyazid.perform.base
 
-import androidx.lifecycle.MutableLiveData
-import com.beyazid.perform.network.ErrorHandler
-import com.beyazid.perform.network.Status
+import com.beyazid.perform.data.network.ErrorHandler
+import com.beyazid.perform.data.network.Status
 import retrofit2.Response
 
 /**
@@ -10,6 +9,11 @@ import retrofit2.Response
  */
 open class BaseRepository {
 
+    /**
+     * This method checks the response status
+     * @param response
+     * @return [ErrorHandler]
+     */
     fun responseStatusChecker(response: Response<String>) : ErrorHandler {
         return if (response.isSuccessful) if (response.code() == 200) {
             when {

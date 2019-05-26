@@ -1,6 +1,5 @@
 package com.beyazid.perform.ui.latest_news
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.beyazid.perform.R
-import com.beyazid.perform.model.latests_news.LatestNewsItem
+import com.beyazid.perform.data.model.latests_news.LatestNewsItem
 import com.beyazid.perform.utils.GlideApp
 import kotlinx.android.synthetic.main.row_latest_news.view.*
 import openFragment
@@ -30,9 +29,9 @@ class LatestNewsAdapter(val context: Context,val newsList : List<LatestNewsItem>
     }
 
     inner class LatestNewsViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val tvTitle = view.row_latest_news_tv_title
-        val tvDate =view.row_latest_news_tv_date
-        val ivImage = view.row_latest_news_iv_image
+        private val tvTitle = view.row_latest_news_tv_title
+        private val tvDate =view.row_latest_news_tv_date
+        private val ivImage = view.row_latest_news_iv_image
 
         fun bindItem(pos : Int){
             val news = newsList[pos]
@@ -43,7 +42,7 @@ class LatestNewsAdapter(val context: Context,val newsList : List<LatestNewsItem>
             itemView.setOnClickListener {
                 val b = Bundle()
                 b.putString("news_detail_url",news.link)
-                openFragment(context,R.id.newsDetailFragment,b)
+                openFragment(context,R.id.newsDetailFragment,b,false)
             }
         }
     }

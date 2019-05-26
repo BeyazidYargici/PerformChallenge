@@ -5,7 +5,7 @@ import dagger.MapKey
 import kotlin.reflect.KClass
 
 /**
- *  Created by beyazid on 2019-05-17.
+ *  Created by beyazid on 2019-05-22.
  */
 @MustBeDocumented
 @Target(

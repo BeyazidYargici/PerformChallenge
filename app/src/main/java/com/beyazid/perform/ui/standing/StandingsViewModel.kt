@@ -4,10 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beyazid.perform.data.repository.standings.StandingsRepository
-import com.beyazid.perform.model.standings.Competition
-import com.beyazid.perform.network.ErrorHandler
+import com.beyazid.perform.data.model.standings.Competition
+import com.beyazid.perform.data.network.ErrorHandler
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -19,6 +18,9 @@ class StandingsViewModel @Inject constructor(private val standingsRepository: St
     var status: LiveData<ErrorHandler>? = null
     var standingsResponse: LiveData<Competition>? = null
 
+    /**
+     *  Feeds UI with fetched data from repository
+     */
     fun getStandings() = viewModelScope.launch {
         standingsResponse = standingsRepository.getStandings()
         status = standingsRepository.status

@@ -5,18 +5,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.beyazid.perform.R
 import com.beyazid.perform.base.BaseFragment
-import com.beyazid.perform.model.scores.Competition
-import com.beyazid.perform.model.scores.GroupItem
-import com.beyazid.perform.network.Status
+import com.beyazid.perform.data.model.scores.Competition
+import com.beyazid.perform.data.model.scores.GroupItem
+import com.beyazid.perform.data.network.Status
 import com.beyazid.perform.utils.createDialog
 import gone
 import init
-import kotlinx.android.synthetic.main.fragment_latest_news.*
 import kotlinx.android.synthetic.main.fragment_scores.*
 import kotlinx.coroutines.runBlocking
 import java.util.*
 import javax.inject.Inject
 
+/**
+ *  This fragment shows matches and scores. These scores updating in every 30 seconds
+ */
 class ScoresFragment : BaseFragment() {
 
     override fun getLayout(): Int = R.layout.fragment_scores
@@ -27,7 +29,7 @@ class ScoresFragment : BaseFragment() {
     @Inject
     lateinit var viewModel: ScoresViewModel
 
-    lateinit var groupAdapter: GroupAdapter
+    private lateinit var groupAdapter: GroupAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -37,11 +39,13 @@ class ScoresFragment : BaseFragment() {
         startTimer()
     }
 
+    // getting data via ViewModel
     private fun getData() {
         viewModel.getScores().invokeOnCompletion {
             viewModel.status?.observe(this, Observer {
                 when (viewModel.status?.value?.status) {
-                    Status.SUCCESS -> viewModel.scoresResponse?.observe(this, Observer { scores -> if (scores == null) return@Observer
+                    Status.SUCCESS -> viewModel.scoresResponse?.observe(this, Observer { scores ->
+                        if (scores == null) return@Observer
                         scores.gsmrs?.competition?.let { competition -> initUI(competition) }
                     })
                     else -> createDialog(activity!!, it.code.toString(), it.message!!)
@@ -58,6 +62,7 @@ class ScoresFragment : BaseFragment() {
 
     }
 
+    // initialize the adapter for showing scores view
     private fun initAdapter(groups: List<GroupItem>) {
         recyclerView = fr_scores_rv
         groupAdapter = GroupAdapter(activity!!, groups)
@@ -65,18 +70,20 @@ class ScoresFragment : BaseFragment() {
     }
 
     lateinit var timer: Timer
-    //
+
+    // This timer triggers to fetch data from api in every 30 seconds
     private fun startTimer() {
         timer = Timer()
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 runBlocking { getData() }
             }
-        }, 0, 15000)
+        }, 0, 30000)
     }
 
     override fun onPause() {
         super.onPause()
+        // cancel timer for avoiding memory leak and unnecessary data usage
         timer.cancel()
     }
 }

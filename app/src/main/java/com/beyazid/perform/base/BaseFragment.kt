@@ -21,7 +21,7 @@ import kotlin.coroutines.CoroutineContext
 
 
 /**
- *  Created by beyazid on 2019-05-17.
+ *  Created by beyazid on 2019-05-23.
  *  All fragments should be extended from this fragment
  */
 abstract class BaseFragment : Fragment(), CoroutineScope, HasSupportFragmentInjector {

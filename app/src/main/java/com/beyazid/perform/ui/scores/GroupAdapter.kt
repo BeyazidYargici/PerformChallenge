@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.beyazid.perform.R
-import com.beyazid.perform.model.scores.GroupItem
-import com.beyazid.perform.model.scores.MatchItem
+import com.beyazid.perform.data.model.scores.GroupItem
+import com.beyazid.perform.data.model.scores.MatchItem
 import init
 import kotlinx.android.synthetic.main.row_group.view.*
-import slideToLeft
 import slideToLeftGroupName
-import slideToRight
 import slideToRightGroupName
 
 /**

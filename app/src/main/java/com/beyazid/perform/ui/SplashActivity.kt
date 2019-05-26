@@ -34,6 +34,7 @@ class SplashActivity : BaseActivity() {
         //Navigate with delay
         mDelayHandler!!.postDelayed(mRunnable, splashDelay)
 
+        // Rotation animation and bouncing animation
         ac_splash_iv.animate().rotation(300f).duration = (splashDelay-0.8).toLong()
         ac_splash_iv.launcherAnim()
     }

@@ -2,19 +2,19 @@ package com.beyazid.perform.data.datasource.latest_news
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.beyazid.perform.network.ApiService
+import com.beyazid.perform.data.network.ApiService
 import com.beyazid.perform.base.BaseRepository
-import com.beyazid.perform.network.ErrorHandler
-import com.beyazid.perform.model.latests_news.LatestNewsItem
-import com.beyazid.perform.model.latests_news.LatestNewsResponse
-import com.beyazid.perform.network.Status
+import com.beyazid.perform.data.network.ErrorHandler
+import com.beyazid.perform.data.model.latests_news.LatestNewsItem
+import com.beyazid.perform.data.model.latests_news.LatestNewsResponse
+import com.beyazid.perform.data.network.Status
 import com.google.gson.Gson
-import timber.log.Timber
 import xmlToJson
 import javax.inject.Inject
 
 /**
- *  Created by beyazid on 2019-05-12.
+ *  This class fetches news from remote or local datasource.
+ *  Created by beyazid on 2019-05-22.
  */
 class LatestNewsDatasourceImp @Inject constructor(private val apiService: ApiService, private val gson: Gson) :
     BaseRepository(), LatestNewsDatasource {

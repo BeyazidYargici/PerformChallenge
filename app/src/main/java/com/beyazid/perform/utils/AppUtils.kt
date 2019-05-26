@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 /**
  *  This class using to start required environments at [PerformApp] started.
- *  Created by beyazid on 2019-05-17.
+ *  Created by beyazid on 2019-05-22.
  */
 class AppUtils @Inject constructor(val application: PerformApp, val context: Context, val initializer: Stetho.Initializer) {
 

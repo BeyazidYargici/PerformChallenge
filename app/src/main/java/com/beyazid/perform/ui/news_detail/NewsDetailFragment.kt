@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import com.beyazid.perform.R
 import kotlinx.android.synthetic.main.fragment_news_detail.*
 
-
+/**
+ *  This fragment shows the detail of the news in a WebView
+ */
 class NewsDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(R.layout.fragment_news_detail, container, false)

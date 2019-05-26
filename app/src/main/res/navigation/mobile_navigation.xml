@@ -8,7 +8,8 @@
         <action android:id="@+id/action_latestNewsFragment_to_newsDetailFragment"
                 app:destination="@id/newsDetailFragment"/>
     </fragment>
-    <fragment android:id="@+id/scoresFragment" android:name="com.beyazid.perform.ui.scores.ScoresFragment"
+    <fragment android:id="@+id/scoresFragment"
+              android:name="com.beyazid.perform.ui.scores.ScoresFragment"
               android:label="ScoresFragment"/>
     <fragment android:id="@+id/standingsFragment" android:name="com.beyazid.perform.ui.standing.StandingsFragment"
               android:label="StandingsFragment"/>

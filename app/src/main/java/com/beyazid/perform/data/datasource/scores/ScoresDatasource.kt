@@ -2,12 +2,11 @@ package com.beyazid.perform.data.datasource.scores
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.beyazid.perform.model.scores.ScoresResponse
-import com.beyazid.perform.network.ErrorHandler
-import retrofit2.Response
+import com.beyazid.perform.data.model.scores.ScoresResponse
+import com.beyazid.perform.data.network.ErrorHandler
 
 /**
- *  Created by beyazid on 2019-05-12.
+ *  Created by beyazid on 2019-05-22.
  */
 interface ScoresDatasource {
     val fetchedScores: LiveData<ScoresResponse>

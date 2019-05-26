@@ -1,6 +1,6 @@
 package com.beyazid.perform.di.module
 
-import com.beyazid.perform.network.ApiService
+import com.beyazid.perform.data.network.ApiService
 import com.beyazid.perform.data.datasource.latest_news.LatestNewsDatasource
 import com.beyazid.perform.data.datasource.latest_news.LatestNewsDatasourceImp
 import com.beyazid.perform.data.datasource.scores.ScoresDatasource

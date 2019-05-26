@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.beyazid.perform.R
-import com.beyazid.perform.model.standings.RankingItem
+import com.beyazid.perform.data.model.standings.RankingItem
 import kotlinx.android.synthetic.main.row_standings.view.*
 import rankColor
 import slideToLeftGroupName

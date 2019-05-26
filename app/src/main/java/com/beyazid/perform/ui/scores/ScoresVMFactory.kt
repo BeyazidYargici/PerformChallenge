@@ -6,7 +6,7 @@ import com.beyazid.perform.data.repository.scores.ScoresRepository
 import javax.inject.Inject
 
 /**
- *  Created by beyazid on 2019-05-12.
+ *  Created by beyazid on 2019-05-22.
  */
 class ScoresVMFactory @Inject constructor(private val scoresRepository: ScoresRepository) :
     ViewModelProvider.NewInstanceFactory() {

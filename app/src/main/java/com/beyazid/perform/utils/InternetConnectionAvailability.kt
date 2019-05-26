@@ -15,8 +15,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- *  This class using in {BaseActivity}. It's provides network connection status
- *  Created by beyazid on 2019-05-17
+ *  This class using in [com.beyazid.perform.base.BaseActivity]. It's provides network connection status
+ *  Created by beyazid on 2019-05-22
  */
 @Singleton
 class InternetConnectionAvailability @Inject constructor(val context: Context) : LiveData<Boolean>() {

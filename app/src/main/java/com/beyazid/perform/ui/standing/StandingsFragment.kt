@@ -6,13 +6,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.beyazid.perform.R
 import com.beyazid.perform.base.BaseFragment
-import com.beyazid.perform.model.standings.Competition
-import com.beyazid.perform.model.standings.RankingItem
-import com.beyazid.perform.network.Status
+import com.beyazid.perform.data.model.standings.Competition
+import com.beyazid.perform.data.model.standings.RankingItem
+import com.beyazid.perform.data.network.Status
 import com.beyazid.perform.utils.createDialog
 import gone
 import init
-import kotlinx.android.synthetic.main.fragment_latest_news.*
 import kotlinx.android.synthetic.main.fragment_standings.*
 import kotlinx.coroutines.launch
 import slideToLeftGroupName
@@ -20,6 +19,7 @@ import slideToRightGroupName
 import javax.inject.Inject
 
 /**
+ *  This fragment shows the standings
  *  Created by beyazid on 2019-05-22.
  */
 class StandingsFragment : BaseFragment() {
@@ -40,6 +40,7 @@ class StandingsFragment : BaseFragment() {
         getData()
     }
 
+    // getting data via ViewModel
     private fun getData() = launch {
         viewModel.getStandings().invokeOnCompletion {
             viewModel.status?.observe(this@StandingsFragment, Observer {
@@ -66,6 +67,7 @@ class StandingsFragment : BaseFragment() {
         initAdapter(competition.season?.round?.resultstable?.ranking as List<RankingItem>)
     }
 
+    // initialize the adapter for showing scores view
     private fun initAdapter(rankingList: List<RankingItem>) {
         recyclerView = fr_standings_rv_stands
         adapter = StandingsAdapter(activity!!, rankingList)

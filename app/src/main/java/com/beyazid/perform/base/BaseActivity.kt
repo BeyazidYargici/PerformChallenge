@@ -16,12 +16,14 @@ import kotlinx.coroutines.Job
 import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * All activities should be extended from this activity
+ */
 abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, LifecycleOwner, CoroutineScope {
     private var mLifecycleRegistry: LifecycleRegistry? = null
 
     //prevent any kind of exception or crashes
     private lateinit var job: Job
-    private lateinit var progressBar: ProgressBar
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main // this job will be running on the main dispatcher(main thread)
 
@@ -36,7 +38,6 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, L
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
         job = Job()
-        progressBar = ProgressBar(this)
         mLifecycleRegistry = LifecycleRegistry(this)
         networkControl()
     }
@@ -55,11 +56,14 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, L
         }
     }
 
+    /**
+     *  this method listens to network connection availability
+     */
     private fun networkControl(){
         val connectionLiveData = InternetConnectionAvailability(this)
         connectionLiveData.observe(this, Observer { isConnected ->
             isConnected?.let {
-                if (!it) createDialog(this, getString(R.string.no_connection), "")
+                if (!it) createDialog(this, "None", getString(R.string.no_connection))
                 isNetworkAvailable = it
             }
         })

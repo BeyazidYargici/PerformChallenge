@@ -1,6 +1,6 @@
 package com.beyazid.perform.di.module
 
-import com.beyazid.perform.network.ApiService
+import com.beyazid.perform.data.network.ApiService
 import com.beyazid.perform.PerformApp
 import com.beyazid.perform.utils.BASE_URL
 import com.facebook.stetho.Stetho
@@ -59,7 +59,7 @@ class NetworkModule {
             val url = chain.request()
                 .url()
                 .newBuilder()
-//                .addQueryParameter(CMC_PRO_API_KEY, API_KEY)
+//                .addQueryParameter(API_KEY, API_KEY)
                 .build()
 
             // request builder
@@ -101,7 +101,6 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-//            .addConverterFactory(GsonConverterFactory.create(gson))
             .addConverterFactory(ScalarsConverterFactory.create()) // To getting plain string
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .baseUrl(BASE_URL)

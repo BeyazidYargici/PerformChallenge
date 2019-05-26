@@ -3,19 +3,17 @@ package com.beyazid.perform.data.datasource.scores
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.beyazid.perform.base.BaseRepository
-import com.beyazid.perform.model.latests_news.LatestNewsResponse
-import com.beyazid.perform.network.ApiService
-import com.beyazid.perform.model.scores.ScoresResponse
-import com.beyazid.perform.network.ErrorHandler
+import com.beyazid.perform.data.network.ApiService
+import com.beyazid.perform.data.model.scores.ScoresResponse
+import com.beyazid.perform.data.network.ErrorHandler
 import com.google.gson.Gson
-import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import xmlToJson
-import java.util.*
 import javax.inject.Inject
 
 /**
- *  Created by beyazid on 2019-05-12.
+ * This class fetches scores from remote or local datasource.
+ *  Created by beyazid on 2019-05-22.
  */
 class ScoresDatasourceImp @Inject constructor(private val apiService: ApiService, private val gson: Gson) : BaseRepository(),ScoresDatasource {
 
@@ -25,6 +23,9 @@ class ScoresDatasourceImp @Inject constructor(private val apiService: ApiService
     override val fetchedScores: LiveData<ScoresResponse>
         get() = mFetchedScores
 
+    /**
+     *  This method is responsible for fetching scores from api and preparing data to be used in datasource
+     */
     override suspend fun getScores(): LiveData<ScoresResponse> {
         return try {
             val response= apiService.getScoresAsStringAsync().await()

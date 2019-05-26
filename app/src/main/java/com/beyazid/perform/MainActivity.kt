@@ -5,16 +5,13 @@ import android.view.View
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import com.beyazid.perform.base.BaseActivity
-import com.google.gson.Gson
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 import android.widget.AdapterView
-import android.widget.ProgressBar
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.beyazid.perform.component.CustomSpinnerAdapter
+import com.beyazid.perform.utils.component.CustomSpinnerAdapter
 import kotlinx.android.synthetic.main.custom_toolbar_with_spinner.*
 import openFragment
 
@@ -47,9 +44,9 @@ class MainActivity : BaseActivity() {
         spinnerToolbar!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 when (position) {
-                    0 -> openFragment(this@MainActivity, R.id.latestNewsFragment, null)
-                    1 -> openFragment(this@MainActivity, R.id.scoresFragment, null)
-                    2 -> openFragment(this@MainActivity, R.id.standingsFragment, null)
+                    0 -> openFragment(this@MainActivity, R.id.latestNewsFragment, null,true)
+                    1 -> openFragment(this@MainActivity, R.id.scoresFragment, null,true)
+                    2 -> openFragment(this@MainActivity, R.id.standingsFragment, null,true)
                 }
             }
 
@@ -66,11 +63,3 @@ class MainActivity : BaseActivity() {
     }
 
 }
-
-//fun getData() = launch {
-//        val xml = apiService.getLatestNewsAsStringAsync().await()
-//        val xml1 = apiService.getScoresAsStringAsync().await()
-//        val latestsNewsResponse = xmlToJson(gson, xml, LatestNewsResponse::class.java)
-//        val scoresResponse = xmlToJson(gson, xml1, ScoresResponse::class.java)
-//        Timber.e(latestsNewsResponse.toString())
-//}

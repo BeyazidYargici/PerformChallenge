@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.beyazid.perform.R
-import com.beyazid.perform.model.scores.MatchItem
+import com.beyazid.perform.data.model.scores.MatchItem
 import kotlinx.android.synthetic.main.row_scores.view.*
 
 /**

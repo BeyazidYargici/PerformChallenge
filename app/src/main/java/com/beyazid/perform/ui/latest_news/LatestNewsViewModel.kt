@@ -1,11 +1,12 @@
 package com.beyazid.perform.ui.latest_news
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewModelScope
-import com.beyazid.perform.network.ErrorHandler
+import com.beyazid.perform.data.network.ErrorHandler
 import com.beyazid.perform.data.repository.latest_news.LatestNewsRepository
-import com.beyazid.perform.model.latests_news.LatestNewsItem
+import com.beyazid.perform.data.model.latests_news.LatestNewsItem
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,10 +14,13 @@ class LatestNewsViewModel @Inject constructor(private val latestNewsRepository: 
 
 
     var status: LiveData<ErrorHandler>? = null
-    var latestNewsResponse: LiveData<List<LatestNewsItem>>? = null
+    var latestNewsResponse = MutableLiveData<List<LatestNewsItem>>()
 
+    /**
+     *  Feeds UI with fetched data from repository
+     */
     fun getLatestNews() = viewModelScope.launch {
-        latestNewsResponse = latestNewsRepository.getLatestNews()
+        latestNewsResponse.value = latestNewsRepository.getLatestNews().value
         status = latestNewsRepository.status
     }
 

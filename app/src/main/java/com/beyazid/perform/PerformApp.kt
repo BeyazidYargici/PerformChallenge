@@ -13,7 +13,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 /**
- *  Created by beyazid on 2019-05-20.
+ *  Created by beyazid on 2019-05-22.
  */
 class PerformApp : Application() , HasActivityInjector {
 

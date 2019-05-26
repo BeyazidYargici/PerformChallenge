@@ -1,14 +1,12 @@
 package com.beyazid.perform.utils
 
 import android.content.Context
-import android.content.Intent
 import androidx.core.content.ContextCompat
-import com.beyazid.perform.MainActivity
 import com.beyazid.perform.R
 import com.crowdfire.cfalertdialog.CFAlertDialog
 
 /**
- *  Created by beyazid on 2019-05-19.
+ *  Created by beyazid on 2019-05-22.
  */
 
 fun createDialog(context: Context, code: String, message: String) {
@@ -19,7 +17,7 @@ fun createDialog(context: Context, code: String, message: String) {
         .addButton(
             "Close",
             -1,
-            ContextCompat.getColor(context, R.color.abc_secondary_text_material_dark),
+            ContextCompat.getColor(context, R.color.black_alpha_text),
             CFAlertDialog.CFAlertActionStyle.POSITIVE,
             CFAlertDialog.CFAlertActionAlignment.END
         ) { dialog, which ->
